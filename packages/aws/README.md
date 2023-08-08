@@ -39,7 +39,7 @@
 
 ## Description
 
-This is the AWS Source Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
+This is the AWS Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
 
 [npm-version-image]: https://img.shields.io/npm/v/@refreshly/aws.svg?style=flat
 [npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/aws.svg?style=flat

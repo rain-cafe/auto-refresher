@@ -39,7 +39,7 @@
 
 ## Description
 
-This is the GitHub Target Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
+This is the GitHub Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
 
 [npm-version-image]: https://img.shields.io/npm/v/@refreshly/github.svg?style=flat
 [npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/github.svg?style=flat
