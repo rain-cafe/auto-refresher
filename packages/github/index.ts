@@ -53,7 +53,7 @@ class GitHubTargetModule implements ITargetModule {
           org: this.#options.org,
           secret_name: prefix(this.#options.prefix, keyInfo.name),
           visibility: 'all',
-          encrypted_value: await getEncryptedValueForGitHub(keyInfo.value, key),
+          encrypted_value: await getEncryptedValueForGitHub(key, keyInfo.value),
         });
       })
     );
