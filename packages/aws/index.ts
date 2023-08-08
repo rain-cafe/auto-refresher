@@ -2,11 +2,11 @@ import { AccessKey, CreateAccessKeyCommand, DeleteAccessKeyCommand, IAMClient } 
 import { SourceModule, KeyInfo } from '@refreshly/core';
 import * as assert from 'assert';
 
-export class AWSModule extends SourceModule {
-  #options: AWSModule.Options;
+class AWSSourceModule extends SourceModule {
+  #options: AWSSourceModule.Options;
   #accessKey?: AccessKey;
 
-  constructor({ targets, ...options }: AWSModule.RawOptions) {
+  constructor({ targets, ...options }: AWSSourceModule.RawOptions) {
     super({ targets });
 
     this.#options = options;
@@ -93,7 +93,7 @@ export class AWSModule extends SourceModule {
   }
 }
 
-export namespace AWSModule {
+namespace AWSSourceModule {
   export type Options = {
     key: string;
     secretKey: string;
@@ -102,3 +102,7 @@ export namespace AWSModule {
 
   export type RawOptions = Options & SourceModule.Options;
 }
+
+export const AWS = {
+  Source: AWSSourceModule,
+};

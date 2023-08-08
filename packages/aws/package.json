@@ -1,6 +1,7 @@
 {
   "name": "@refreshly/aws",
   "packageManager": "yarn@3.6.1",
+  "description": "Simply a key rotation tool!~ ❤️",
   "main": "dist/index.js",
   "source": "index.ts",
   "types": "dist/index.d.ts",

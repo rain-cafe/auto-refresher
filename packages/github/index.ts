@@ -2,15 +2,15 @@ import { Octokit } from 'octokit';
 import * as sodium from 'libsodium-wrappers';
 import { KeyInfo, ITargetModule } from '@refreshly/core';
 
-export class GitHubModule implements ITargetModule {
-  #options: GitHubModule.Options;
+class GitHubTargetModule implements ITargetModule {
+  #options: GitHubTargetModule.Options;
   #octokit: Octokit;
   #publicKey: Promise<{
     key_id: string;
     key: string;
   }>;
 
-  constructor(options: GitHubModule.Options) {
+  constructor(options: GitHubTargetModule.Options) {
     this.#options = options;
 
     this.#octokit = new Octokit({
@@ -66,9 +66,13 @@ export class GitHubModule implements ITargetModule {
   target = this.#update;
 }
 
-export namespace GitHubModule {
+namespace GitHubTargetModule {
   export interface Options {
     token: string;
     org: string;
   }
 }
+
+export const GitHub = {
+  Target: GitHubTargetModule,
+};
