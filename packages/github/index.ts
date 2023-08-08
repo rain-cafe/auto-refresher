@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
-import * as sodium from 'libsodium-wrappers';
 import { KeyInfo, ITargetModule, getEnv, prefix } from '@refreshly/core';
+import { getEncryptedValueForGitHub } from './utils/sodium';
 
 class GitHubTargetModule implements ITargetModule {
   #options: GitHubTargetModule.Options;
@@ -44,22 +44,16 @@ class GitHubTargetModule implements ITargetModule {
   async #update(keyInfos: KeyInfo[]): Promise<void> {
     await this.#octokit.rest.users.getAuthenticated();
 
-    const [{ key, key_id }] = await Promise.all([this.#getOrgPublicKey(this.#options.org), sodium.ready]);
+    const { key, key_id } = await this.#getOrgPublicKey(this.#options.org);
 
     await Promise.all(
       keyInfos.map(async (keyInfo) => {
-        // Encrypt the secret using libsodium
-        const encBytes = sodium.crypto_box_seal(
-          sodium.from_string(keyInfo.value),
-          sodium.from_base64(key, sodium.base64_variants.ORIGINAL)
-        );
-
         await this.#octokit.rest.actions.createOrUpdateOrgSecret({
           key_id,
           org: this.#options.org,
           secret_name: prefix(this.#options.prefix, keyInfo.name),
           visibility: 'all',
-          encrypted_value: sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL),
+          encrypted_value: await getEncryptedValueForGitHub(keyInfo.value, key),
         });
       })
     );
