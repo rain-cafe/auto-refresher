@@ -67,7 +67,8 @@ import { GitHub } from '@refreshly/github';
 Refreshly(
   new AWS.Source({
     key: myAwsAccessKeyId, // process.env.AWS_ACCESS_KEY_ID
-    key: myAwsSecretAccessKey, // process.env.AWS_SECRET_ACCESS_KEY
+    secretKey: myAwsSecretAccessKey, // process.env.AWS_SECRET_ACCESS_KEY
+    user: 'rain-ci',
     prefix: 'CI_ONLY_',
     targets: [
       new GitHub.Target({
