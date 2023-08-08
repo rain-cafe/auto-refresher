@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
 import * as sodium from 'libsodium-wrappers';
-import { KeyInfo, ITargetModule } from '@refreshly/core';
+import { KeyInfo, ITargetModule, getEnv } from '@refreshly/core';
 
 class GitHubTargetModule implements ITargetModule {
   #options: GitHubTargetModule.Options;
@@ -10,8 +10,11 @@ class GitHubTargetModule implements ITargetModule {
     key: string;
   }>;
 
-  constructor(options: GitHubTargetModule.Options) {
-    this.#options = options;
+  constructor({ token, ...options }: GitHubTargetModule.Options) {
+    this.#options = {
+      ...options,
+      token: getEnv('token', token, 'GITHUB_TOKEN', 'GH_TOKEN'),
+    };
 
     this.#octokit = new Octokit({
       auth: this.#options.token,
@@ -68,7 +71,7 @@ class GitHubTargetModule implements ITargetModule {
 
 namespace GitHubTargetModule {
   export interface Options {
-    token: string;
+    token?: string;
     org: string;
   }
 }
