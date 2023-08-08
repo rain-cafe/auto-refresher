@@ -20,7 +20,7 @@ export function getEnv<T>(configKey: string, configValue?: T, ...keys: string[])
     }
   }
 
-  throw new Error(`Expected ${configKey} to be provided via... (${keys.join(', ')})`);
+  throw new Error(`Expected "${configKey}" to be provided via... (config.${configKey}, ${keys.join(', ')})`);
 }
 
 export function prefix(...values: string[]): string {
