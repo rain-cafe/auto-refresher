@@ -1,0 +1,9 @@
+{
+  "META_VERSION": "1",
+  "name": "@refreshly/aws",
+  "hash": "e83465ac167e81ed58c1f701ddbe548123e5d59c",
+  "version": "1.0.8",
+  "dependencies": {
+    "@refreshly/core": "^1.0.6"
+  }
+}
