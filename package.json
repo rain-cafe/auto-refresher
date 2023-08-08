@@ -6,7 +6,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prepublish": "",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint 'packages/**/*.ts'",
