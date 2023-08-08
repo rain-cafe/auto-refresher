@@ -23,4 +23,8 @@ export function getEnv<T>(configKey: string, configValue?: T, ...keys: string[])
   throw new Error(`Expected ${configKey} to be provided via... (${keys.join(', ')})`);
 }
 
+export function prefix(...values: string[]): string {
+  return values.filter(Boolean).join('');
+}
+
 export * from './@types';

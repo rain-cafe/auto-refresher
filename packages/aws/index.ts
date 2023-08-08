@@ -1,5 +1,5 @@
 import { AccessKey, CreateAccessKeyCommand, DeleteAccessKeyCommand, IAMClient } from '@aws-sdk/client-iam';
-import { SourceModule, KeyInfo, getEnv } from '@refreshly/core';
+import { SourceModule, KeyInfo, getEnv, prefix } from '@refreshly/core';
 import * as assert from 'assert';
 
 class AWSSourceModule extends SourceModule {
@@ -48,11 +48,11 @@ class AWSSourceModule extends SourceModule {
 
     return [
       {
-        name: 'AWS_ACCESS_KEY_ID',
+        name: prefix(this.#options.prefix, 'AWS_ACCESS_KEY_ID'),
         value: this.#accessKey.AccessKeyId,
       },
       {
-        name: 'AWS_SECRET_ACCESS_KEY',
+        name: prefix(this.#options.prefix, 'AWS_SECRET_ACCESS_KEY'),
         value: this.#accessKey.SecretAccessKey,
       },
     ];
@@ -101,6 +101,7 @@ namespace AWSSourceModule {
   export type Options = {
     key?: string;
     secretKey?: string;
+    prefix?: string;
     user: string;
   };
 

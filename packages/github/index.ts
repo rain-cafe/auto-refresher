@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
 import * as sodium from 'libsodium-wrappers';
-import { KeyInfo, ITargetModule, getEnv } from '@refreshly/core';
+import { KeyInfo, ITargetModule, getEnv, prefix } from '@refreshly/core';
 
 class GitHubTargetModule implements ITargetModule {
   #options: GitHubTargetModule.Options;
@@ -57,7 +57,7 @@ class GitHubTargetModule implements ITargetModule {
         await this.#octokit.rest.actions.createOrUpdateOrgSecret({
           key_id,
           org: this.#options.org,
-          secret_name: keyInfo.name,
+          secret_name: prefix(this.#options.prefix, keyInfo.name),
           visibility: 'all',
           encrypted_value: sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL),
         });
@@ -72,6 +72,7 @@ class GitHubTargetModule implements ITargetModule {
 namespace GitHubTargetModule {
   export interface Options {
     token?: string;
+    prefix?: string;
     org: string;
   }
 }
