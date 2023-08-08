@@ -1,0 +1,26 @@
+{
+  "name": "@refreshly/github",
+  "packageManager": "yarn@3.6.1",
+  "main": "dist/index.js",
+  "source": "index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle --target node -f cjs"
+  },
+  "dependencies": {
+    "@refreshly/core": "workspace:^",
+    "libsodium-wrappers": "^0.7.11",
+    "octokit": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/libsodium-wrappers": "^0.7.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rain-cafe/flarie.git"
+  },
+  "license": "MIT"
+}

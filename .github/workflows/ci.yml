@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install Packages
+        run: yarn install --immutable
+
+      - name: Linting
+        run: yarn run lint
+
+      # - name: Coverage
+      #   run: yarn run test:coverage
+
+      # - name: Coveralls
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: yarn dlx zx-bulk-release
+        env:
+          GH_USER: 'cozybot'
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_AUTHOR_EMAIL: 'bot@rains.cafe'
+          GIT_COMMITTER_EMAIL: 'bot@rains.cafe'
+          GIT_AUTHOR_NAME: 'Cozy Bot'
+          GIT_COMMITTER_NAME: 'Cozy Bot'
+          YARN_ENABLE_IMMUTABLE_INSTALLS: true

@@ -1,0 +1,22 @@
+{
+  "name": "@refreshly/aws",
+  "packageManager": "yarn@3.6.1",
+  "main": "dist/index.js",
+  "source": "index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle --target node -f cjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-iam": "^3.386.0",
+    "@refreshly/core": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rain-cafe/flarie.git"
+  },
+  "license": "MIT"
+}

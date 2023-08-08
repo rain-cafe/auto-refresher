@@ -1,0 +1,3 @@
+buildCmd: false
+changelog: false
+npmFetch: false

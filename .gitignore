@@ -1,0 +1,14 @@
+.parcel-cache/
+node_modules/
+.env*
+.DS_Store
+coverage/
+dist/
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
