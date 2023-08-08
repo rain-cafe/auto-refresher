@@ -76,9 +76,11 @@ Refreshly(
         org: 'rain-cafe',
       }),
       new GitHub.Target({
+        token: myGitHubToken, // process.env.GH_TOKEN || process.env.GITHUB_TOKEN
         org: 'rain-cafe-xiv',
       }),
       new GitHub.Target({
+        token: myGitHubToken, // process.env.GH_TOKEN || process.env.GITHUB_TOKEN
         org: 'rain-cafe-mc',
       }),
     ],

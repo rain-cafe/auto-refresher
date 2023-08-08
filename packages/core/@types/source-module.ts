@@ -4,7 +4,7 @@ import { ITargetModule } from './target-module';
 export abstract class SourceModule {
   #options: SourceModule.Options;
 
-  constructor(options: SourceModule.Options = {}) {
+  constructor(options: SourceModule.Options) {
     this.#options = options;
   }
 
@@ -12,12 +12,6 @@ export abstract class SourceModule {
 
   async exec(): Promise<void> {
     const keyInfos = await this.source();
-
-    if (!this.#options.targets) {
-      console.log('Please provide a list of targets');
-
-      return await this.revert();
-    }
 
     try {
       await Promise.all(
@@ -57,6 +51,6 @@ export abstract class SourceModule {
 
 export namespace SourceModule {
   export type Options = {
-    targets?: ITargetModule[];
+    targets: ITargetModule[];
   };
 }

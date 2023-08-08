@@ -16,7 +16,10 @@ describe('@refreshly/core', () => {
         async revert() {}
       }
 
-      const module = new FakeModule();
+      const module = new FakeModule({
+        targets: [],
+      });
+
       await Refreshly(module);
     });
   });
