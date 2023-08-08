@@ -2,7 +2,7 @@ import { KeyInfo, Refreshly, SourceModule, getEnv, prefix } from '../index';
 
 describe('@refreshly/core', () => {
   describe('func(Refreshly)', () => {
-    it('should ...', async () => {
+    it('should execute all of the source modules', async () => {
       class FakeModule extends SourceModule {
         get originalKeyInfos(): KeyInfo[] {
           return [];
