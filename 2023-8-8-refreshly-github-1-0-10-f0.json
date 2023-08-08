@@ -1,0 +1,9 @@
+{
+  "META_VERSION": "1",
+  "name": "@refreshly/github",
+  "hash": "d957796e2a62b92b54f63c6e8db1f25feacc66d7",
+  "version": "1.0.10",
+  "dependencies": {
+    "@refreshly/core": "^1.0.7"
+  }
+}
