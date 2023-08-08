@@ -30,7 +30,7 @@ export abstract class SourceModule {
 
       await this.cleanup();
     } catch (error) {
-      console.log(`Error detected, reverting to previous state...`);
+      console.log('Error detected, reverting to previous state...');
 
       await Promise.all(
         this.options.targets.map(async (target) => {
@@ -39,6 +39,8 @@ export abstract class SourceModule {
       );
 
       await this.revert();
+
+      throw error;
     }
   }
 
