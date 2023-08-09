@@ -18,12 +18,6 @@ export async function Refreshly(...sources: SourceModule[]) {
   }
 }
 
-export namespace Refreshly {
-  export function setLogLevel(level: LogLevel): void {
-    Logger.setLevel(level);
-  }
-}
-
 // This is temporary
 export function getEnv<T>(configKey: string, configValue?: T, ...keys: string[]): T {
   if (configValue) return configValue;
@@ -44,4 +38,4 @@ export function prefix(...values: string[]): string {
 }
 
 export * from './@types';
-export { LogLevel };
+export { LogLevel, Logger };

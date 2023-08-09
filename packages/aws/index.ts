@@ -1,9 +1,9 @@
 import { AccessKey, CreateAccessKeyCommand, DeleteAccessKeyCommand, IAMClient } from '@aws-sdk/client-iam';
-import { SourceModule, KeyInfo, getEnv, prefix } from '@refreshly/core';
-import * as assert from 'assert';
+import { SourceModule, KeyInfo, getEnv, prefix, Logger, PartiallyRequired } from '@refreshly/core';
 
 class AWSSourceModule extends SourceModule {
-  protected declare options: AWSSourceModule.Options;
+  protected declare options: PartiallyRequired<AWSSourceModule.Options, 'key' | 'secretKey'>;
+
   private accessKey?: AccessKey;
 
   constructor({ targets, key, secretKey, ...options }: AWSSourceModule.Options) {
@@ -83,7 +83,10 @@ class AWSSourceModule extends SourceModule {
   }
 
   async cleanup(): Promise<void> {
-    assert.ok(this.accessKey);
+    if (!this.accessKey) {
+      Logger.info(`(${this.name}) No cleanup necessary, skipping...`);
+      return;
+    }
 
     // Retain the new key and cleanup the old key
     const client = new IAMClient({
