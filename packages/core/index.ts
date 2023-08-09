@@ -1,15 +1,26 @@
+import { LogLevel, Logger } from '@rain-cafe/logger';
 import { SourceModule } from './@types/source-module';
 
 export async function Refreshly(...sources: SourceModule[]) {
+  Logger.info('Refreshing keys...');
+
   try {
     await Promise.all(
       sources.map(async (source) => {
+        Logger.silly(`(${source.name}) Executing... `);
         await source.exec();
       })
     );
   } catch (error) {
-    console.error(error);
+    Logger.error(error?.toString() ?? error);
+
     process.exit(1);
+  }
+}
+
+export namespace Refreshly {
+  export function setLogLevel(level: LogLevel): void {
+    Logger.setLevel(level);
   }
 }
 
@@ -33,3 +44,4 @@ export function prefix(...values: string[]): string {
 }
 
 export * from './@types';
+export { LogLevel };

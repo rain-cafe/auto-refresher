@@ -8,6 +8,9 @@
   "scripts": {
     "build": "microbundle --target node -f cjs"
   },
+  "dependencies": {
+    "@rain-cafe/logger": "^1.0.2"
+  },
   "publishConfig": {
     "access": "public"
   },

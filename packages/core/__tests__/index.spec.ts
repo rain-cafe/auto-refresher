@@ -4,6 +4,10 @@ describe('@refreshly/core', () => {
   describe('func(Refreshly)', () => {
     it('should execute all of the source modules', async () => {
       class FakeModule extends SourceModule {
+        get name(): string {
+          return 'fake';
+        }
+
         get originalKeyInfos(): KeyInfo[] {
           return [];
         }

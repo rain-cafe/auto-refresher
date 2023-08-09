@@ -2640,6 +2640,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rain-cafe/logger@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@rain-cafe/logger@npm:1.0.2"
+  dependencies:
+    chalk: ^3
+  checksum: 5a24d4eb458a06d7e22619dd4b5dde6b6e33a283312a8c0cf4cb33917c22be35efb0eb808ce1a12a4f851e1fb5aec22a3ba77495ac1f48e204c6376314082388
+  languageName: node
+  linkType: hard
+
 "@refreshly/aws@workspace:packages/aws":
   version: 0.0.0-use.local
   resolution: "@refreshly/aws@workspace:packages/aws"
@@ -2652,6 +2661,8 @@ __metadata:
 "@refreshly/core@workspace:^, @refreshly/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refreshly/core@workspace:packages/core"
+  dependencies:
+    "@rain-cafe/logger": ^1.0.2
   languageName: unknown
   linkType: soft
 
@@ -4204,6 +4215,16 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: ec3661d38fe77f681200f878edbd9448821924e0f93a9cefc0e26a33b145f1027a2084bf19967160d11e1f03bfe4eaffcabf5493b89098b2782c3fe0b03d80c2
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^3":
+  version: 3.0.0
+  resolution: "chalk@npm:3.0.0"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: 8e3ddf3981c4da405ddbd7d9c8d91944ddf6e33d6837756979f7840a29272a69a5189ecae0ff84006750d6d1e92368d413335eab4db5476db6e6703a1d1e0505
   languageName: node
   linkType: hard
 

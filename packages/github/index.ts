@@ -24,6 +24,10 @@ class GitHubTargetModule implements ITargetModule {
     this.#getOrgPublicKey(this.#options.org);
   }
 
+  get name(): string {
+    return 'github';
+  }
+
   async #getOrgPublicKey(org: string): Promise<{ key_id: string; key: string }> {
     if (!this.#publicKey) {
       this.#publicKey = this.#octokit.rest.users.getAuthenticated().then(async () => {

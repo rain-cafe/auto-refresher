@@ -17,6 +17,10 @@ class AWSSourceModule extends SourceModule {
     };
   }
 
+  get name(): string {
+    return 'aws';
+  }
+
   get originalKeyInfos(): KeyInfo[] {
     return [
       {
