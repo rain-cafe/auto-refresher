@@ -12,8 +12,7 @@ export async function Refreshly(...sources: SourceModule[]) {
       })
     );
   } catch (error) {
-    Logger.error(error?.toString() ?? error);
-
+    console.error(error);
     process.exit(1);
   }
 }

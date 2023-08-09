@@ -63,8 +63,13 @@ class GitHubTargetModule implements ITargetModule {
     );
   }
 
-  revert = this.update;
-  target = this.update;
+  async revert(keyInfos: KeyInfo[]): Promise<void> {
+    await this.update(keyInfos);
+  }
+
+  async target(keyInfos: KeyInfo[]): Promise<void> {
+    await this.update(keyInfos);
+  }
 }
 
 namespace GitHubTargetModule {
