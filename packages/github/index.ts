@@ -25,7 +25,7 @@ class GitHubTargetModule implements ITargetModule {
   }
 
   get name(): string {
-    return 'github';
+    return `github:${this.options.org}`;
   }
 
   private async getOrgPublicKey(org: string): Promise<{ key_id: string; key: string }> {

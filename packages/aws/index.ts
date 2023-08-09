@@ -24,11 +24,11 @@ class AWSSourceModule extends SourceModule {
   get originalKeyInfos(): KeyInfo[] {
     return [
       {
-        name: 'AWS_ACCESS_KEY_ID',
+        name: prefix(this.options.prefix, 'AWS_ACCESS_KEY_ID'),
         value: this.options.key,
       },
       {
-        name: 'AWS_SECRET_ACCESS_KEY',
+        name: prefix(this.options.prefix, 'AWS_SECRET_ACCESS_KEY'),
         value: this.options.secretKey,
       },
     ];
@@ -48,6 +48,10 @@ class AWSSourceModule extends SourceModule {
         UserName: 'rain-ci',
       })
     );
+
+    // Why the hell do I have to arbitrarily wait?
+    // What is propagating on Amazon's backend that results in the token not being immediately usable?
+    await new Promise((resolve) => setTimeout(resolve, 7000));
 
     this.accessKey = AccessKey;
 

@@ -42,7 +42,7 @@ export abstract class SourceModule {
       await Promise.all(
         this.options.targets.map(async (target) => {
           Logger.silly(`(${target.name}) Reverting...`);
-          await target.revert(this.originalKeyInfos);
+          await target.target(this.originalKeyInfos);
           Logger.silly(`(${target.name}) Successfully reverted!`);
         })
       );

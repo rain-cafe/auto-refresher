@@ -37,4 +37,5 @@ export function prefix(...values: string[]): string {
 }
 
 export * from './@types';
+export * from './fs';
 export { LogLevel, Logger };
