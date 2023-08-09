@@ -1,30 +1,6 @@
-<div align="center"><b>NOTE: THIS REPOSITORY IS A WIP AND AS SUCH THE APIS ARE</b></div>
-<div align="center"><b>MORE THEN LIKELY GOING TO CHANGE DRASTICALLY</b></div>
-
-<!-- <h2 align="center">
-  <div>
-    <a href="https://github.com/rain-cafe/refreshly">
-      <img height="240px" src="https://raw.githubusercontent.com/rain-cafe/logos/main/refreshly/logo.svg?sanitize=true">
-      <br>
-      <br>
-      <img height="100px" src="https://raw.githubusercontent.com/rain-cafe/logos/main/refreshly/refreshly.svg?sanitize=true">
-    </a>
-  </div>
-</h2> -->
-
 <h3 align="center">
   Simply a key rotation tool!~ :heart:
 </h3>
-
-<p align="center">
-	<strong>
-		<!-- <a href="https://refreshly.github.io">API</a> -->
-		<!-- • -->
-		<!-- <a href="https://rain-cafe.gitbook.io/refreshly/">Docs</a> -->
-		<!-- • -->
-		<!-- <a href="https://salte-auth-demo.glitch.me">Demo</a> -->
-	</strong>
-</p>
 
 <div align="center">
 
