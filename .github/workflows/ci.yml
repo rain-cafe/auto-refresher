@@ -30,6 +30,9 @@ jobs:
       - name: Linting
         run: yarn lint
 
+      - name: Build
+        run: yarn build
+
       - name: Coverage
         run: yarn run test:coverage
 
@@ -37,9 +40,6 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build
-        run: yarn build
 
       - name: Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

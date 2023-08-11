@@ -13,6 +13,10 @@
     "@gitbeaker/rest": "^39.10.3",
     "@refreshly/core": "workspace:^"
   },
+  "devDependencies": {
+    "@refreshly/test-utils": "workspace:^",
+    "microbundle": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

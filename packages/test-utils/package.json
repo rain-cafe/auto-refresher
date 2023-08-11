@@ -1,0 +1,17 @@
+{
+  "name": "@refreshly/test-utils",
+  "packageManager": "yarn@3.6.1",
+  "private": true,
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle --target node -f cjs"
+  },
+  "dependencies": {
+    "chance": "1.1.11"
+  },
+  "devDependencies": {
+    "@types/chance": "1.1.3"
+  }
+}

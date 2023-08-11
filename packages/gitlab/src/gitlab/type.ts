@@ -1,26 +1,41 @@
 import { Gitlab } from '@gitbeaker/core';
+import { GitLabType, IdsRequest } from './types';
 
-export enum GitLabType {
-  GROUP,
-  PROJECT,
-}
+export type TypeResponse = {
+  id: string;
+  type: GitLabType;
+};
 
-export async function getType(client: Gitlab, id: string): Promise<GitLabType> {
-  const group = await client.Groups.show(id)
-    .then(() => true)
-    .catch(() => false);
+export async function getTypes({ token, ids }: IdsRequest): Promise<TypeResponse[]> {
+  const client = new Gitlab({
+    token,
+  });
 
-  if (group) {
-    return GitLabType.GROUP;
-  }
+  return Promise.all(
+    ids.map(async (id) => {
+      const group = await client.Groups.show(id)
+        .then(() => true)
+        .catch(() => false);
 
-  const project = await client.Projects.show(id)
-    .then(() => true)
-    .catch(() => false);
+      if (group) {
+        return {
+          id,
+          type: GitLabType.GROUP,
+        };
+      }
 
-  if (project) {
-    return GitLabType.PROJECT;
-  }
+      const project = await client.Projects.show(id)
+        .then(() => true)
+        .catch(() => false);
 
-  throw new Error(`Unknown group / project id! (${id})`);
+      if (project) {
+        return {
+          id,
+          type: GitLabType.PROJECT,
+        };
+      }
+
+      throw new Error(`Unknown group / project id! (${id})`);
+    })
+  );
 }

@@ -12,6 +12,10 @@
     "@aws-sdk/client-iam": "^3.386.0",
     "@refreshly/core": "workspace:^"
   },
+  "devDependencies": {
+    "@refreshly/test-utils": "workspace:^",
+    "microbundle": "*"
+  },
   "publishConfig": {
     "access": "public"
   },
