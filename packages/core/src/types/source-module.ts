@@ -29,7 +29,7 @@ export abstract class SourceModule {
         this.options.targets.map(async (target) => {
           Logger.silly(`(${target.name}) Updating...`);
           await target.target(keyInfos);
-          Logger.silly(`(${target.name}) Successfully updated!`);
+          Logger.info(`(${target.name}) Successfully updated!`);
         })
       );
 
@@ -37,7 +37,7 @@ export abstract class SourceModule {
 
       await this.cleanup();
     } catch (error) {
-      Logger.error('Error detected, reverting to previous state...');
+      Logger.error('Error detected, reverting to previous state...', error);
 
       await Promise.all(
         this.options.targets.map(async (target) => {

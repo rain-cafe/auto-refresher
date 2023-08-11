@@ -1,0 +1,16 @@
+{
+  "name": "@refreshly/demo",
+  "private": true,
+  "packageManager": "yarn@3.6.1",
+  "main": "app/index.ts",
+  "scripts": {
+    "start": "ts-node ."
+  },
+  "dependencies": {
+    "@refreshly/aws": "workspace:^",
+    "@refreshly/core": "workspace:^",
+    "@refreshly/github": "workspace:^",
+    "@refreshly/gitlab": "workspace:^",
+    "dotenv": "^16.3.1"
+  }
+}

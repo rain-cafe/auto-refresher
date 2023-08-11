@@ -5,7 +5,7 @@ import { getEncryptedValueForGitHub } from './utils/sodium';
 class GitHubTargetModule implements ITargetModule {
   private options: PartiallyRequired<GitHubTargetModule.Options, 'token'>;
   private octokit: Octokit;
-  private publicKey: Promise<{
+  private publicKey?: Promise<{
     key_id: string;
     key: string;
   }>;
@@ -73,11 +73,11 @@ class GitHubTargetModule implements ITargetModule {
 }
 
 namespace GitHubTargetModule {
-  export interface Options {
+  export type Options = {
     token?: string;
     prefix?: string;
     org: string;
-  }
+  };
 }
 
 export const GitHub = {

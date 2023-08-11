@@ -1,4 +1,4 @@
-import { KeyInfo } from '../../@types/key-info';
+import { KeyInfo } from '../../types/key-info';
 
 export function keyInfoToKeyValue(keyInfo: KeyInfo): string {
   return `${keyInfo.name}=${keyInfo.value}`;

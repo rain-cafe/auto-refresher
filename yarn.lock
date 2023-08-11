@@ -1854,7 +1854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.8.4":
   version: 7.22.10
   resolution: "@babel/runtime@npm:7.22.10"
   dependencies:
@@ -1958,6 +1958,37 @@ __metadata:
   version: 8.46.0
   resolution: "@eslint/js@npm:8.46.0"
   checksum: 7aed479832302882faf5bec37e9d068f270f84c19b3fb529646a7c1b031e73a312f730569c78806492bc09cfce3d7651dfab4ce09a56cbb06bc6469449e56377
+  languageName: node
+  linkType: hard
+
+"@gitbeaker/core@npm:^39.10.3":
+  version: 39.10.3
+  resolution: "@gitbeaker/core@npm:39.10.3"
+  dependencies:
+    "@gitbeaker/requester-utils": ^39.10.3
+    qs: ^6.11.2
+    xcase: ^2.0.1
+  checksum: ce5e4853f415e81460c0a5c4ed585334ed55d104123d23c5a90996e84676664bab639fb5f093c9c62672281a69feb8a004fdbd3d2bf944eabcffbaba25007772
+  languageName: node
+  linkType: hard
+
+"@gitbeaker/requester-utils@npm:^39.10.3":
+  version: 39.10.3
+  resolution: "@gitbeaker/requester-utils@npm:39.10.3"
+  dependencies:
+    qs: ^6.11.2
+    xcase: ^2.0.1
+  checksum: 3bb8f30b62e03a1096c627d1c7ceac5cbfb9504ce3a312853a85a8a645f01bdb40550308f3efd5f04eda37ba9d03846ae4b270fdce9e9bbf66df02ad518be677
+  languageName: node
+  linkType: hard
+
+"@gitbeaker/rest@npm:^39.10.3":
+  version: 39.10.3
+  resolution: "@gitbeaker/rest@npm:39.10.3"
+  dependencies:
+    "@gitbeaker/core": ^39.10.3
+    "@gitbeaker/requester-utils": ^39.10.3
+  checksum: 4f065fe99ebfe0fb3b37591f3c5383909f79dfc8e82c8cb49f414a016239295603a47cd4e6245803e7f1c7562fa2a2da384f10d585e163a75d14689adc6b16cd
   languageName: node
   linkType: hard
 
@@ -2640,16 +2671,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rain-cafe/logger@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@rain-cafe/logger@npm:1.0.2"
+"@rain-cafe/logger@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@rain-cafe/logger@npm:1.0.3"
   dependencies:
     chalk: ^3
-  checksum: 5a24d4eb458a06d7e22619dd4b5dde6b6e33a283312a8c0cf4cb33917c22be35efb0eb808ce1a12a4f851e1fb5aec22a3ba77495ac1f48e204c6376314082388
+  checksum: 3b032b8c9294646986219e8e68e966b485c9f5f2a4154e98a7ed53d14f6a491f9740bffcaecc7d8a660d19b5231c7dd8cc0c688ed98a875cac2a222c04a5d0ec
   languageName: node
   linkType: hard
 
-"@refreshly/aws@workspace:packages/aws":
+"@refreshly/aws@workspace:^, @refreshly/aws@workspace:packages/aws":
   version: 0.0.0-use.local
   resolution: "@refreshly/aws@workspace:packages/aws"
   dependencies:
@@ -2662,11 +2693,23 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refreshly/core@workspace:packages/core"
   dependencies:
-    "@rain-cafe/logger": ^1.0.2
+    "@rain-cafe/logger": ^1.0.3
   languageName: unknown
   linkType: soft
 
-"@refreshly/github@workspace:packages/github":
+"@refreshly/demo@workspace:packages/demo":
+  version: 0.0.0-use.local
+  resolution: "@refreshly/demo@workspace:packages/demo"
+  dependencies:
+    "@refreshly/aws": "workspace:^"
+    "@refreshly/core": "workspace:^"
+    "@refreshly/github": "workspace:^"
+    "@refreshly/gitlab": "workspace:^"
+    dotenv: ^16.3.1
+  languageName: unknown
+  linkType: soft
+
+"@refreshly/github@workspace:^, @refreshly/github@workspace:packages/github":
   version: 0.0.0-use.local
   resolution: "@refreshly/github@workspace:packages/github"
   dependencies:
@@ -2674,6 +2717,16 @@ __metadata:
     "@types/libsodium-wrappers": ^0.7.10
     libsodium-wrappers: ^0.7.11
     octokit: ^3.1.0
+  languageName: unknown
+  linkType: soft
+
+"@refreshly/gitlab@workspace:^, @refreshly/gitlab@workspace:packages/gitlab":
+  version: 0.0.0-use.local
+  resolution: "@refreshly/gitlab@workspace:packages/gitlab"
+  dependencies:
+    "@gitbeaker/core": ^39.10.3
+    "@gitbeaker/rest": ^39.10.3
+    "@refreshly/core": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -4228,7 +4281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0":
+"chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -4380,6 +4433,26 @@ __metadata:
   dependencies:
     source-map: ^0.6.1
   checksum: 57faa6f4a6f38a1846a58f96b2745ec8435755e0021f069e89085c651d091b78d9bc20807ea76c38c85021acca80dc2fa4cedda666aade169b602604215d25b9
+  languageName: node
+  linkType: hard
+
+"concurrently@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "concurrently@npm:8.2.0"
+  dependencies:
+    chalk: ^4.1.2
+    date-fns: ^2.30.0
+    lodash: ^4.17.21
+    rxjs: ^7.8.1
+    shell-quote: ^1.8.1
+    spawn-command: 0.0.2
+    supports-color: ^8.1.1
+    tree-kill: ^1.2.2
+    yargs: ^17.7.2
+  bin:
+    conc: dist/bin/concurrently.js
+    concurrently: dist/bin/concurrently.js
+  checksum: eafe6a4d9b7fda87f55ea285cfc6acd937a5286ceec8991ab48e6cc27c45fce6a5c6f45e18d7555defa15dc7d7e8941bc5a9d1ceaf182e31441d420e00333434
   languageName: node
   linkType: hard
 
@@ -4562,6 +4635,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^2.30.0":
+  version: 2.30.0
+  resolution: "date-fns@npm:2.30.0"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+  checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -4705,6 +4787,13 @@ __metadata:
     domelementtype: ^2.2.0
     domhandler: ^4.2.0
   checksum: abf7434315283e9aadc2a24bac0e00eab07ae4313b40cc239f89d84d7315ebdfd2fb1b5bf750a96bc1b4403d7237c7b2ebf60459be394d625ead4ca89b934391
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "dotenv@npm:16.3.1"
+  checksum: 15d75e7279018f4bafd0ee9706593dd14455ddb71b3bcba9c52574460b7ccaf67d5cf8b2c08a5af1a9da6db36c956a04a1192b101ee102a3e0cf8817bbcf3dfd
   languageName: node
   linkType: hard
 
@@ -5077,6 +5166,15 @@ __metadata:
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
+  languageName: node
+  linkType: hard
+
+"exec-sh@npm:^0.2.0":
+  version: 0.2.2
+  resolution: "exec-sh@npm:0.2.2"
+  dependencies:
+    merge: ^1.2.0
+  checksum: 3ec5f99c8f7c4bebfeed1a797818f8754de00415d60a99f327e7f970834ca85252c449bf4b2efbff4c11e76eccc6b976a1956a5394a612d8e3d412185f59b0c0
   languageName: node
   linkType: hard
 
@@ -7011,6 +7109,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"merge@npm:^1.2.0":
+  version: 1.2.1
+  resolution: "merge@npm:1.2.1"
+  checksum: 2298c4fdcf64561f320b92338681f7ffcafafb579a6e294066ae3e7bd10ae25df363903d2f028072733b9f79a1f75d2b999aef98ad5d73de13641da39cda0913
+  languageName: node
+  linkType: hard
+
 "microbundle@npm:^0.15.1":
   version: 0.15.1
   resolution: "microbundle@npm:0.15.1"
@@ -7104,6 +7209,13 @@ __metadata:
   dependencies:
     brace-expansion: ^2.0.1
   checksum: 253487976bf485b612f16bf57463520a14f512662e592e95c571afdab1442a6a6864b6c88f248ce6fc4ff0b6de04ac7aa6c8bb51e868e99d1d65eb0658a708b5
+  languageName: node
+  linkType: hard
+
+"minimist@npm:^1.2.0":
+  version: 1.2.8
+  resolution: "minimist@npm:1.2.8"
+  checksum: 75a6d645fb122dad29c06a7597bddea977258957ed88d7a6df59b5cd3fe4a527e253e9bbf2e783e4b73657f9098b96a5fe96ab8a113655d4109108577ecf85b0
   languageName: node
   linkType: hard
 
@@ -8118,6 +8230,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.11.2":
+  version: 6.11.2
+  resolution: "qs@npm:6.11.2"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -8160,6 +8281,7 @@ __metadata:
     "@types/node": ^20.4.8
     "@typescript-eslint/eslint-plugin": ^6.3.0
     "@typescript-eslint/parser": ^6.3.0
+    concurrently: ^8.2.0
     eslint: ^8.46.0
     eslint-plugin-unused-imports: ^3.0.0
     jest: ^29.6.2
@@ -8167,6 +8289,7 @@ __metadata:
     ts-jest: ^29.1.1
     ts-node: ^10.9.1
     typescript: ^5.1.6
+    watch: ^1.0.2
   languageName: unknown
   linkType: soft
 
@@ -8440,6 +8563,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rxjs@npm:^7.8.1":
+  version: 7.8.1
+  resolution: "rxjs@npm:7.8.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: de4b53db1063e618ec2eca0f7965d9137cabe98cf6be9272efe6c86b47c17b987383df8574861bcced18ebd590764125a901d5506082be84a8b8e364bf05f119
+  languageName: node
+  linkType: hard
+
 "sade@npm:^1.7.4":
   version: 1.8.1
   resolution: "sade@npm:1.8.1"
@@ -8542,6 +8674,13 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
+  languageName: node
+  linkType: hard
+
+"shell-quote@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "shell-quote@npm:1.8.1"
+  checksum: 5f01201f4ef504d4c6a9d0d283fa17075f6770bfbe4c5850b074974c68062f37929ca61700d95ad2ac8822e14e8c4b990ca0e6e9272e64befd74ce5e19f0736b
   languageName: node
   linkType: hard
 
@@ -8657,6 +8796,13 @@ __metadata:
   version: 1.4.8
   resolution: "sourcemap-codec@npm:1.4.8"
   checksum: b57981c05611afef31605732b598ccf65124a9fcb03b833532659ac4d29ac0f7bfacbc0d6c5a28a03e84c7510e7e556d758d0bb57786e214660016fb94279316
+  languageName: node
+  linkType: hard
+
+"spawn-command@npm:0.0.2":
+  version: 0.0.2
+  resolution: "spawn-command@npm:0.0.2"
+  checksum: e35c5d28177b4d461d33c88cc11f6f3a5079e2b132c11e1746453bbb7a0c0b8a634f07541a2a234fa4758239d88203b758def509161b651e81958894c0b4b64b
   languageName: node
   linkType: hard
 
@@ -8888,7 +9034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supports-color@npm:^8.0.0":
+"supports-color@npm:^8.0.0, supports-color@npm:^8.1.1":
   version: 8.1.1
   resolution: "supports-color@npm:8.1.1"
   dependencies:
@@ -9000,6 +9146,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tree-kill@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "tree-kill@npm:1.2.2"
+  bin:
+    tree-kill: cli.js
+  checksum: 49117f5f410d19c84b0464d29afb9642c863bc5ba40fcb9a245d474c6d5cc64d1b177a6e6713129eb346b40aebb9d4631d967517f9fbe8251c35b21b13cd96c7
+  languageName: node
+  linkType: hard
+
 "ts-api-utils@npm:^1.0.1":
   version: 1.0.1
   resolution: "ts-api-utils@npm:1.0.1"
@@ -9087,7 +9242,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.3, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.5.0":
+"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.5.0":
   version: 2.6.1
   resolution: "tslib@npm:2.6.1"
   checksum: b0d176d176487905b66ae4d5856647df50e37beea7571c53b8d10ba9222c074b81f1410fb91da13debaf2cbc970663609068bdebafa844ea9d69b146527c38fe
@@ -9362,6 +9517,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"watch@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "watch@npm:1.0.2"
+  dependencies:
+    exec-sh: ^0.2.0
+    minimist: ^1.2.0
+  bin:
+    watch: ./cli.js
+  checksum: 7ffe99f8bdbd3311d84bdd80d90e74536da90d6b64b339a73dce57884c50527881b83e507e49ab85212682350791999c296fbf2a136b579530046fb97ffb9526
+  languageName: node
+  linkType: hard
+
 "which-boxed-primitive@npm:^1.0.2":
   version: 1.0.2
   resolution: "which-boxed-primitive@npm:1.0.2"
@@ -9447,6 +9614,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"xcase@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "xcase@npm:2.0.1"
+  checksum: 1d407306593f1049ebb5d3b7b86b0d40b4b108be428cf4d17c57454ef5444c962555c387384c121d83a6bcf7a9b6b04a51cc4b76786bfb0fac8d0a108b5b7ef8
+  languageName: node
+  linkType: hard
+
 "y18n@npm:^5.0.5":
   version: 5.0.8
   resolution: "y18n@npm:5.0.8"
@@ -9482,7 +9656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.3.1, yargs@npm:^17.5.1":
+"yargs@npm:^17.3.1, yargs@npm:^17.5.1, yargs@npm:^17.7.2":
   version: 17.7.2
   resolution: "yargs@npm:17.7.2"
   dependencies:

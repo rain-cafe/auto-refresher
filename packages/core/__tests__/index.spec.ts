@@ -1,4 +1,4 @@
-import { KeyInfo, Refreshly, SourceModule, getEnv, prefix } from '../index';
+import { KeyInfo, Refreshly, SourceModule, getEnv, prefix } from '../src/index';
 
 describe('@refreshly/core', () => {
   describe('func(Refreshly)', () => {

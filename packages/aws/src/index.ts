@@ -4,7 +4,7 @@ import { SourceModule, KeyInfo, getEnv, prefix, Logger, PartiallyRequired } from
 class AWSSourceModule extends SourceModule {
   protected declare options: PartiallyRequired<AWSSourceModule.Options, 'key' | 'secretKey'>;
 
-  private accessKey?: AccessKey;
+  private accessKey?: PartiallyRequired<AccessKey, 'AccessKeyId' | 'SecretAccessKey'>;
 
   constructor({ targets, key, secretKey, ...options }: AWSSourceModule.Options) {
     super({ targets });
@@ -53,16 +53,27 @@ class AWSSourceModule extends SourceModule {
     // What is propagating on Amazon's backend that results in the token not being immediately usable?
     await new Promise((resolve) => setTimeout(resolve, 7000));
 
-    this.accessKey = AccessKey;
+    // ... why are these all specified as potentially being undefined?...
+    // In what scenario would I create an access token, and not get one back that doesn't result in an error...
+    if (!AccessKey || !AccessKey.AccessKeyId || !AccessKey.SecretAccessKey) {
+      throw new Error('Access key was unexpectedly undefined after creating it!');
+    }
+
+    // This is stupid, but for some reason I have to destruct it in order to get typescript to realize they are in-fact... defined
+    this.accessKey = {
+      ...AccessKey,
+      AccessKeyId: AccessKey.AccessKeyId,
+      SecretAccessKey: AccessKey.SecretAccessKey,
+    };
 
     return [
       {
         name: prefix(this.options.prefix, 'AWS_ACCESS_KEY_ID'),
-        value: this.accessKey.AccessKeyId,
+        value: AccessKey.AccessKeyId,
       },
       {
         name: prefix(this.options.prefix, 'AWS_SECRET_ACCESS_KEY'),
-        value: this.accessKey.SecretAccessKey,
+        value: AccessKey.SecretAccessKey,
       },
     ];
   }
