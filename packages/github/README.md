@@ -28,7 +28,7 @@ Refreshly(
     file: '.env',
     targets: [
       new GitHub.Target({
-        token: myGitLabToken, // process.env.GH_TOKEN || process.env.GITHUB_TOKEN
+        token: myGitHubToken, // process.env.GH_TOKEN || process.env.GITHUB_TOKEN
         org: 'rain-cafe',
       }),
     ],

@@ -31,7 +31,7 @@ Refreshly(
     targets: [
       new GitLab.Target({
         token: myGitLabToken, // process.env.GL_TOKEN || process.env.GITLAB_TOKEN
-        org: 'rain-cafe',
+        id: '<your-group-or-project-id>',
       }),
     ],
   })
