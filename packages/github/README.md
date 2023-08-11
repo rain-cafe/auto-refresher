@@ -17,6 +17,25 @@
 
 This is the GitHub Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
 
+## Usage
+
+```ts
+import { Refreshly, DotEnv } from '@refreshly/core';
+import { GitHub } from '@refreshly/github';
+
+Refreshly(
+  new DotEnv.Source({
+    file: '.env',
+    targets: [
+      new GitHub.Target({
+        token: myGitLabToken, // process.env.GH_TOKEN || process.env.GITHUB_TOKEN
+        org: 'rain-cafe',
+      }),
+    ],
+  })
+);
+```
+
 [npm-version-image]: https://img.shields.io/npm/v/@refreshly/github.svg?style=flat
 [npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/github.svg?style=flat
 [npm-url]: https://npmjs.org/package/@refreshly/github

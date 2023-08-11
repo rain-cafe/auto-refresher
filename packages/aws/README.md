@@ -17,6 +17,27 @@
 
 This is the AWS Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
 
+## Usage
+
+```ts
+import { Refreshly, DotEnv } from '@refreshly/core';
+import { AWS } from '@refreshly/aws';
+
+Refreshly(
+  new AWS.Source({
+    key: myAwsAccessKeyId, // process.env.AWS_ACCESS_KEY_ID
+    secretKey: myAwsSecretAccessKey, // process.env.AWS_SECRET_ACCESS_KEY
+    user: 'rain-ci',
+    prefix: 'CI_ONLY_',
+    targets: [
+      new DotEnv.Target({
+        file: '.env',
+      }),
+    ],
+  })
+);
+```
+
 [npm-version-image]: https://img.shields.io/npm/v/@refreshly/aws.svg?style=flat
 [npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/aws.svg?style=flat
 [npm-url]: https://npmjs.org/package/@refreshly/aws

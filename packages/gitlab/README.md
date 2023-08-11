@@ -17,19 +17,17 @@
 
 This is the GitLab Module for [Refreshly](https://github.com/rain-cafe/refreshly)!
 
+## Usage
+
 ### As a Target
 
 ```ts
-import { Refreshly } from '@refreshly/core';
-import { AWS } from '@refreshly/aws';
+import { Refreshly, DotEnv } from '@refreshly/core';
 import { GitLab } from '@refreshly/gitlab';
 
 Refreshly(
-  new AWS.Source({
-    key: myAwsAccessKeyId, // process.env.AWS_ACCESS_KEY_ID
-    secretKey: myAwsSecretAccessKey, // process.env.AWS_SECRET_ACCESS_KEY
-    user: 'rain-ci',
-    prefix: 'CI_ONLY_',
+  new DotEnv.Source({
+    file: '.env',
     targets: [
       new GitLab.Target({
         token: myGitLabToken, // process.env.GL_TOKEN || process.env.GITLAB_TOKEN
@@ -43,15 +41,14 @@ Refreshly(
 ### As a Source
 
 ```ts
-import { Refreshly } from '@refreshly/core';
-import { AWS } from '@refreshly/aws';
+import { Refreshly, DotEnv } from '@refreshly/core';
 import { GitLab } from '@refreshly/gitlab';
 
 Refreshly(
   new GitLab.Source({
     token: myGitLabToken, // process.env.GL_TOKEN || process.env.GITLAB_TOKEN
     targets: [
-      new FS.Target({
+      new DotEnv.Target({
         file: '.env',
       }),
     ],
@@ -59,9 +56,9 @@ Refreshly(
 );
 ```
 
-[npm-version-image]: https://img.shields.io/npm/v/@refreshly/github.svg?style=flat
-[npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/github.svg?style=flat
-[npm-url]: https://npmjs.org/package/@refreshly/github
+[npm-version-image]: https://img.shields.io/npm/v/@refreshly/gitlab.svg?style=flat
+[npm-downloads-image]: https://img.shields.io/npm/dm/@refreshly/gitlab.svg?style=flat
+[npm-url]: https://npmjs.org/package/@refreshly/gitlab
 [github-actions-image]: https://github.com/rain-cafe/refreshly/actions/workflows/ci.yml/badge.svg?branch=main
 [github-actions-url]: https://github.com/rain-cafe/refreshly/actions/workflows/ci.yml
 [coveralls-image]: https://img.shields.io/coveralls/rain-cafe/refreshly.svg
