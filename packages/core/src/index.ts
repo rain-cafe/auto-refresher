@@ -1,16 +1,18 @@
 import { LogLevel, Logger } from '@rain-cafe/logger';
-import { SourceModule } from './@types/source-module';
+import { SourceModule } from './types/source-module';
 
 export async function Refreshly(...sources: SourceModule[]) {
-  Logger.info('Refreshing keys...');
-
   try {
+    Logger.info('Refreshing keys...');
+
     await Promise.all(
       sources.map(async (source) => {
         Logger.silly(`(${source.name}) Executing... `);
         await source.exec();
       })
     );
+
+    Logger.info('Refreshly completed successfully!');
   } catch (error) {
     console.error(error);
     process.exit(1);
@@ -32,10 +34,10 @@ export function getEnv<T>(configKey: string, configValue?: T, ...keys: string[])
   throw new Error(`Expected "${configKey}" to be provided via... (config.${configKey}, ${keys.join(', ')})`);
 }
 
-export function prefix(...values: string[]): string {
+export function prefix(...values: Array<string | null | undefined>): string {
   return values.filter(Boolean).join('');
 }
 
-export * from './@types';
-export * from './fs';
+export * from './types';
+export * from './dotenv';
 export { LogLevel, Logger };

@@ -6,22 +6,26 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "yarn workspace @refreshly/demo start",
+    "watch": "watch 'yarn build' ./packages/*/src -du",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint 'packages/**/*.ts'",
-    "build": "yarn workspaces foreach run build"
+    "build": "yarn workspaces foreach -pt run build"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.8",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
+    "concurrently": "^8.2.0",
     "eslint": "^8.46.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "jest": "^29.6.2",
     "microbundle": "^0.15.1",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "watch": "^1.0.2"
   }
 }

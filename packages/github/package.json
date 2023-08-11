@@ -3,7 +3,7 @@
   "packageManager": "yarn@3.6.1",
   "description": "Simply a key rotation tool!~ ❤️",
   "main": "dist/index.js",
-  "source": "index.ts",
+  "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "microbundle --target node -f cjs"

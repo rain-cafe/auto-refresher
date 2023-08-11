@@ -1,5 +1,5 @@
 {
-  "name": "@refreshly/aws",
+  "name": "@refreshly/gitlab",
   "packageManager": "yarn@3.6.1",
   "description": "Simply a key rotation tool!~ ❤️",
   "main": "dist/index.js",
@@ -9,7 +9,8 @@
     "build": "microbundle --target node -f cjs"
   },
   "dependencies": {
-    "@aws-sdk/client-iam": "^3.386.0",
+    "@gitbeaker/core": "^39.10.3",
+    "@gitbeaker/rest": "^39.10.3",
     "@refreshly/core": "workspace:^"
   },
   "publishConfig": {
