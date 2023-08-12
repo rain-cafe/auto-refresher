@@ -1,0 +1,9 @@
+{
+  "META_VERSION": "1",
+  "name": "@refreshly/gitlab",
+  "hash": "39c2fb34a2e92bc82c18a0b20d27c8ac7ae87dca",
+  "version": "2.0.3",
+  "dependencies": {
+    "@refreshly/core": "^2.0.2"
+  }
+}
