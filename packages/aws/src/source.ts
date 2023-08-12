@@ -6,8 +6,8 @@ export class AWSSourceModule extends SourceModule {
 
   private accessKey?: AccessKey;
 
-  constructor({ targets, key, secretKey, ...options }: AWSSourceModule.Options) {
-    super({ targets });
+  constructor({ targets, prefix, key, secretKey, ...options }: AWSSourceModule.Options) {
+    super({ targets, prefix });
 
     this.options = {
       ...options,

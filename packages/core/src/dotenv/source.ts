@@ -7,8 +7,8 @@ export class DotEnvSourceModule extends SourceModule {
   private options: Omit<DotEnvSourceModule.Options, keyof SourceModule.Options>;
   private keyInfos: KeyInfo[];
 
-  constructor({ targets, file, ...options }: DotEnvSourceModule.Options) {
-    super({ targets });
+  constructor({ targets, prefix, file, ...options }: DotEnvSourceModule.Options) {
+    super({ targets, prefix });
 
     this.options = {
       ...options,

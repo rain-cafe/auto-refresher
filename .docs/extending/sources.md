@@ -25,8 +25,8 @@ import { KeyInfo, SourceModule } from '@refreshly/core';
 export class MyServiceSourceModule extends SourceModule {
   private options: Omit<MyServiceSourceModule.Options, keyof SourceModule.Options>;
 
-  constructor({ targets, ...options }: SourceModule.Options) {
-    super({ targets });
+  constructor({ targets, prefix, ...options }: SourceModule.Options) {
+    super({ targets, prefix });
 
     this.options = options;
   }

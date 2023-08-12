@@ -5,8 +5,8 @@ export class GitLabSourceModule extends SourceModule {
   private options: PartiallyRequired<Omit<GitLabSourceModule.Options, keyof SourceModule.Options>, 'token'>;
   private token?: string;
 
-  constructor({ token, targets, ...options }: GitLabSourceModule.Options) {
-    super({ targets });
+  constructor({ token, prefix, targets, ...options }: GitLabSourceModule.Options) {
+    super({ targets, prefix });
 
     this.options = {
       ...options,
