@@ -1,4 +1,4 @@
-import { Gitlab, PersonalAccessTokenSchema } from '@gitbeaker/core';
+import { Gitlab, PersonalAccessTokenSchema } from '@gitbeaker/rest';
 import { BaseRequest } from './types';
 
 export type RotatedPersonalAccessTokenSchema = PersonalAccessTokenSchema & { token: string };

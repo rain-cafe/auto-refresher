@@ -14,12 +14,12 @@ config({
 
 Refreshly(
   new GitLab.Source({
+    prefix: 'CI_ONLY_',
     targets: [
       new DotEnv.Target({
         file: rootDotEnv,
       }),
       new GitLab.Target({
-        prefix: 'CI_ONLY_',
         ids: ['48414121'],
       }),
     ],

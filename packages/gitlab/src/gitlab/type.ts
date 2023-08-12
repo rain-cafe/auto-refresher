@@ -1,4 +1,4 @@
-import { Gitlab } from '@gitbeaker/core';
+import { Gitlab } from '@gitbeaker/rest';
 import { GitLabType, IdsRequest } from './types';
 
 export type TypeResponse = {

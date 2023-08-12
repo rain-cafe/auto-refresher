@@ -1,4 +1,5 @@
-import { Gitlab, VariableSchema } from '@gitbeaker/core';
+import { Gitlab as GitlabBase } from '@gitbeaker/core';
+import { Gitlab, VariableSchema } from '@gitbeaker/rest';
 import { KeyInfo } from '@refreshly/core';
 import { getTypes } from './type';
 import { GitLabType, IdRequest, IdsRequest } from './types';
@@ -7,7 +8,7 @@ export type KeyInfosRequest = IdsRequest & {
   keyInfos: KeyInfo[];
 };
 
-export function getVariables(client: Gitlab, type: GitLabType, id: string): Promise<VariableSchema[]> {
+export function getVariables(client: GitlabBase, type: GitLabType, id: string): Promise<VariableSchema[]> {
   if (type === GitLabType.GROUP) {
     return client.GroupVariables.all(id);
   }
@@ -15,7 +16,7 @@ export function getVariables(client: Gitlab, type: GitLabType, id: string): Prom
   return client.ProjectVariables.all(id);
 }
 
-export async function getVariableNames(client: Gitlab, type: GitLabType, id: string): Promise<string[]> {
+export async function getVariableNames(client: GitlabBase, type: GitLabType, id: string): Promise<string[]> {
   const variables = await getVariables(client, type, id);
 
   return variables.map((variable) => variable.key);
