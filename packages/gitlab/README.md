@@ -12,7 +12,7 @@
 
 <p align="center">
 	<strong>
-		<a href="https://refreshly.gitbook.io">Docs</a>
+		<a href="https://refreshly.rains.cafe" target="_blank">Docs</a>
 	</strong>
 </p>
 
