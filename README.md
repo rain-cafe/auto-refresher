@@ -1,10 +1,7 @@
 <h2 align="center">
   <div>
     <a href="https://github.com/rain-cafe/refreshly">
-      <img height="300px" src="https://raw.githubusercontent.com/rain-cafe/logos/main/refreshly/logo.png?sanitize=true">
-      <br>
-      <br>
-      <img height="100px" src="https://raw.githubusercontent.com/rain-cafe/logos/main/refreshly/refreshly.png?sanitize=true">
+      <img src="https://raw.githubusercontent.com/rain-cafe/logos/main/refreshly/npm.png?sanitize=true">
     </a>
   </div>
 </h2>
