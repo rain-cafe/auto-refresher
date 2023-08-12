@@ -11,6 +11,10 @@
   "dependencies": {
     "@rain-cafe/logger": "^1.0.3"
   },
+  "devDependencies": {
+    "@refreshly/test-utils": "workspace:^",
+    "microbundle": "*"
+  },
   "publishConfig": {
     "access": "public"
   },

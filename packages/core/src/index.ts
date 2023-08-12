@@ -1,5 +1,5 @@
 import { LogLevel, Logger } from '@rain-cafe/logger';
-import { SourceModule } from './types/source-module';
+import { SourceModule } from './modules';
 
 export async function Refreshly(...sources: SourceModule[]) {
   try {
@@ -14,7 +14,7 @@ export async function Refreshly(...sources: SourceModule[]) {
 
     Logger.info('Refreshly completed successfully!');
   } catch (error) {
-    console.error(error);
+    Logger.error(error);
     process.exit(1);
   }
 }
@@ -34,10 +34,7 @@ export function getEnv<T>(configKey: string, configValue?: T, ...keys: string[])
   throw new Error(`Expected "${configKey}" to be provided via... (config.${configKey}, ${keys.join(', ')})`);
 }
 
-export function prefix(...values: Array<string | null | undefined>): string {
-  return values.filter(Boolean).join('');
-}
-
+export * from './modules';
 export * from './types';
 export * from './dotenv';
 export { LogLevel, Logger };

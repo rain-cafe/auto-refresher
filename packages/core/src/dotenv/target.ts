@@ -1,11 +1,14 @@
-import { ITargetModule, KeyInfo } from '../types';
+import { TargetModule } from '../modules';
+import { KeyInfo } from '../types';
 import path from 'node:path';
 import { merge } from './utils/dotenv';
 
-export class DotEnvTargetModule implements ITargetModule {
-  private options: DotEnvTargetModule.Options;
+export class DotEnvTargetModule extends TargetModule {
+  private options: Omit<DotEnvTargetModule.Options, keyof TargetModule.Options>;
 
-  constructor({ file, ...options }: DotEnvTargetModule.Options) {
+  constructor({ file, prefix, ...options }: DotEnvTargetModule.Options) {
+    super({ prefix });
+
     this.options = {
       ...options,
       file: path.isAbsolute(file) ? file : path.join(process.cwd(), file),
@@ -24,5 +27,5 @@ export class DotEnvTargetModule implements ITargetModule {
 export namespace DotEnvTargetModule {
   export type Options = {
     file: string;
-  };
+  } & TargetModule.Options;
 }

@@ -1,16 +1,16 @@
 import path from 'node:path';
-import { SourceModule, KeyInfo } from '../types';
+import { KeyInfo } from '../types';
+import { SourceModule } from '../modules';
 import { read, readSync } from './utils/dotenv';
 
 export class DotEnvSourceModule extends SourceModule {
-  protected declare options: DotEnvSourceModule.Options;
+  private options: Omit<DotEnvSourceModule.Options, keyof SourceModule.Options>;
   private keyInfos: KeyInfo[];
 
   constructor({ targets, file, ...options }: DotEnvSourceModule.Options) {
     super({ targets });
 
     this.options = {
-      ...this.options,
       ...options,
       file: path.isAbsolute(file) ? file : path.join(process.cwd(), file),
     };
@@ -29,13 +29,9 @@ export class DotEnvSourceModule extends SourceModule {
   async source(): Promise<KeyInfo[]> {
     return await read(this.options.file, this.options.properties);
   }
-
-  async revert(): Promise<void> {}
-
-  async cleanup(): Promise<void> {}
 }
 
-namespace DotEnvSourceModule {
+export namespace DotEnvSourceModule {
   export type Options = {
     file: string;
     properties?: string[];

@@ -1,7 +1,7 @@
 import { getEncryptedValueForGitHub } from '../sodium';
 import sodium from 'libsodium-wrappers';
 
-describe('@refreshly/github', () => {
+describe('utils(Sodium)', () => {
   describe('func(getEncryptedValueForGitHub)', () => {
     it('should encrypt the value for github', async () => {
       await sodium.ready;

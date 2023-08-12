@@ -1,6 +1,11 @@
 import { Gitlab, VariableSchema } from '@gitbeaker/core';
 import { KeyInfo } from '@refreshly/core';
-import { GitLabType, getType } from './type';
+import { getTypes } from './type';
+import { GitLabType, IdRequest, IdsRequest } from './types';
+
+export type KeyInfosRequest = IdsRequest & {
+  keyInfos: KeyInfo[];
+};
 
 export function getVariables(client: Gitlab, type: GitLabType, id: string): Promise<VariableSchema[]> {
   if (type === GitLabType.GROUP) {
@@ -16,32 +21,24 @@ export async function getVariableNames(client: Gitlab, type: GitLabType, id: str
   return variables.map((variable) => variable.key);
 }
 
-export async function edit(
-  client: Gitlab,
-  type: GitLabType,
-  id: string,
-  key: string,
-  value: string
-): Promise<VariableSchema> {
-  if (type === GitLabType.GROUP) {
-    return client.GroupVariables.edit(id, key, value);
+export type EditRequest = IdRequest & {
+  type: GitLabType;
+  keyInfo: KeyInfo;
+  exists: boolean;
+};
+
+export async function edit({ token, type, id, keyInfo, exists }: EditRequest): Promise<VariableSchema> {
+  const client = new Gitlab({
+    token,
+  });
+
+  const Variables = type === GitLabType.GROUP ? client.GroupVariables : client.ProjectVariables;
+
+  if (exists) {
+    return Variables.edit(id, keyInfo.name, keyInfo.value);
   }
 
-  return client.ProjectVariables.edit(id, key, value);
-}
-
-export async function create(
-  client: Gitlab,
-  type: GitLabType,
-  id: string,
-  key: string,
-  value: string
-): Promise<VariableSchema> {
-  if (type === GitLabType.GROUP) {
-    return client.GroupVariables.create(id, key, value);
-  }
-
-  return client.ProjectVariables.create(id, key, value);
+  return Variables.create(id, keyInfo.name, keyInfo.value);
 }
 
 /**
@@ -51,17 +48,31 @@ export async function create(
  * @param key
  * @param value
  */
-export async function editSafe(client: Gitlab, id: string, keyInfos: KeyInfo[]): Promise<void> {
-  const type = await getType(client, id);
-  const variables = await getVariableNames(client, type, id);
+export async function editSafe({ token, ids, keyInfos }: KeyInfosRequest): Promise<void> {
+  const client = new Gitlab({
+    token,
+  });
+
+  const types = await getTypes({
+    ids,
+    token,
+  });
 
   await Promise.all(
-    keyInfos.map(async (keyInfo) => {
-      if (variables.includes(keyInfo.name)) {
-        await edit(client, type, id, keyInfo.name, keyInfo.value);
-      } else {
-        await create(client, type, id, keyInfo.name, keyInfo.value);
-      }
+    types.map(async ({ id, type }) => {
+      const variables = await getVariableNames(client, type, id);
+
+      await Promise.all(
+        keyInfos.map(async (keyInfo) => {
+          await edit({
+            id,
+            token,
+            keyInfo,
+            type,
+            exists: variables.includes(keyInfo.name),
+          });
+        })
+      );
     })
   );
 }

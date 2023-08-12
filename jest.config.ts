@@ -7,7 +7,7 @@ const jestConfig: JestConfigWithTsJest = {
     ...tsjPreset.transform,
   },
 
-  collectCoverageFrom: ['<rootDir>/packages/**/*'],
+  collectCoverageFrom: ['src/**/*.ts'],
   coveragePathIgnorePatterns: ['dist'],
 
   /*
@@ -16,7 +16,12 @@ const jestConfig: JestConfigWithTsJest = {
    */
   coverageProvider: 'v8',
 
-  modulePaths: ['<rootDir>'],
+  projects: ['core', 'aws', 'github', 'gitlab'].map((name) => ({
+    preset: 'ts-jest',
+    displayName: `@refreshly/${name}`,
+    rootDir: `<rootDir>/packages/${name}`,
+    testMatch: ['**/*.spec.ts'],
+  })),
 };
 
 export default jestConfig;

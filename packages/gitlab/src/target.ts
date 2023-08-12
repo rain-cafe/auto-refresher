@@ -1,45 +1,34 @@
-import { ITargetModule, KeyInfo, getEnv, prefix } from '@refreshly/core';
-import { Gitlab } from '@gitbeaker/rest';
-import './gitlab/group-variables';
+import { TargetModule, KeyInfo, getEnv } from '@refreshly/core';
 import { editSafe } from './gitlab/group-variables';
 
-export class GitLabTargetModule implements ITargetModule {
-  private options: GitLabTargetModule.Options;
+export class GitLabTargetModule extends TargetModule {
+  private options: Omit<GitLabTargetModule.Options, keyof TargetModule.Options>;
 
-  constructor(options: GitLabTargetModule.Options) {
+  constructor({ prefix, ...options }: GitLabTargetModule.Options) {
+    super({ prefix });
+
     this.options = options;
   }
 
   get name(): string {
-    return `gitlab:${this.options.id}`;
+    return 'gitlab';
   }
 
   async target(keyInfos: KeyInfo[]): Promise<void> {
-    /**
-     * I absolutely hate this, it's a hack purely to get Gitlab.Source to work in conjunction with Gitlab.Target :<
-     * See the source module for more information.
-     */
-    this.options.token = getEnv('token', this.options.token, 'GITLAB_TOKEN', 'GL_TOKEN');
-
-    const client = new Gitlab({
-      token: this.options.token,
+    await editSafe({
+      /**
+       * I absolutely hate this, it's a hack purely to get Gitlab.Source to work in conjunction with Gitlab.Target :<
+       * See the source module for more information.
+       */
+      token: getEnv('token', this.options.token, 'GITLAB_TOKEN', 'GL_TOKEN'),
+      ids: this.options.ids,
+      keyInfos,
     });
-
-    await editSafe(
-      client,
-      this.options.id,
-      keyInfos.map((keyInfo) => ({
-        ...keyInfo,
-        name: prefix(this.options.prefix, keyInfo.name),
-      }))
-    );
   }
 }
 
 export namespace GitLabTargetModule {
   export type Options = {
-    prefix?: string;
-
     /**
      * Your GitLab Personal Access Token!
      *
@@ -48,8 +37,8 @@ export namespace GitLabTargetModule {
     token?: string;
 
     /**
-     * The Group ID or Project ID
+     * The Group / Project IDs
      */
-    id: string;
-  };
+    ids: string[];
+  } & TargetModule.Options;
 }
